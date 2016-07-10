@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Trabalho 01</title>
+        <script src="jquery/jquery-3.0.0.min.js" charset="utf-8"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#nome').focus();
+                //exercicio 3
+                $('form label').css('color', 'red');
+                //exercicio 1
+                $('form').submit(function() {
+                    $("input").each(function() {
+                        if (!this.value) {
+                            event.preventDefault();
+                            $("#" + this.id).css('background-color', 'red');
+                        } else {
+                            $("#" + this.id).css('background-color', 'white');
+                        }
+                        //exercicio 6
+                        $('ol li').eq(0).fadeOut(3000);
+                    });
+                });
+                //exercicio 2
+                $('#bt-reset').click(function() {
+                    $("input").each(function() {
+                        $(this).val('').css('background-color', 'white');
+                    });
+                    return false;
+                });
+                //exercicio 4
+                $('ol li').eq(2).css('background-color', 'yellow');
+                //exercicio 5
+                $('ol').append('<li>Esta linha apareceu do nada. Professor que pediu!!!</li>');
+            });
+        </script>
+    </head>
+    <body>
+        <h1>Exemplo de formulário</h1>
+        <form id="form1" method="post">
+            <label for="nome">Nome:</label>
+            <input id="nome" name="nome" type="text"/><br/>
+            <label for="idade">Idade:</label>
+            <input id="idade" name="idade" type="number"/><br/>
+            <label for="email">e-mail:</label>
+            <input id="email" name="email" type="text"/><br/>
+            <button id="bt-reset">Reset</button>
+            <button type="submit" id="bt-enviar">Enviar</button>
+        </form>
+
+        <h2>Exercícios</h2>
+        <ol id="lista-exercicios">
+            <li>Ao clicar no botão enviar, o formulário deve colocar um fundo vermelho nos campos que estiverem vazios (não-preenchidos)</li>
+            <li>Ao clicar em Limpar, todos os campos devem ser apagados</li>
+            <li>Quando a página terminar de carregar, todos os "labels" devem ficar com a letra na cor vermelha ('red' ou '#fff')</li>
+            <li>Ao terminar de carregar a página, o terceiro item desta lista de exercícios deve ficar com o fundo amarelo ('yellow' ou '#ff0')</li>
+            <li>Insira mais um item ao final desta lista usando apenas jQuery. Pode ser ao terminar de carregar a página.</li>
+            <li>Ao clicar em Enviar no formulário, faça o item 1 desaparecer, usando a função .fadeOut()</li>
+        </ol>
+    </body>
+</html>

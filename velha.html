@@ -3,90 +3,13 @@
     <head>
         <meta charset="utf-8"/>
         <title>Jogo da Velha</title>
-        <style>
-            .unselectable {
-                -webkit-touch-callout: none;
-                -webkit-user-select: none;
-                -khtml-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;
-            }
-            td {
-                border: 1px solid #ccc;
-                font-size: 4em;
-                padding: 15px;
-                text-align: center;
-                font-family: Helvetica, sans-serif;
-                width: 100px;
-                height: 100px;
-            }
-            table {
-                border-collapse: collapse;
-                margin: auto;
-            }
-
-        </style>
+        <link rel="stylesheet" href="css/main.css" media="screen" charset="utf-8">
         <script type="text/javascript" src="jquery/jquery-3.0.0.min.js"></script>
-        <script type="text/javascript">
-            var jogador = 'O';
-            $(document).ready(function() {
-                $('#jogador').html(jogador);
-
-                $('table tr td').click(function() {
-                    if (!$(this).html()) {
-                        $(this).html(jogador);
-                        verificarJogada();
-                        alternarJogador();
-                    }
-                });
-
-                function verificarJogada() {
-                    validarLinhas();
-                    validarColunas();
-                }
-
-                function validarLinhas() {
-                    $('table tr').each(function() {
-                        if ($(this).children().text() == "OOO" || $(this).children().text() == "XXX") {
-                            ganhou();
-                        }
-                    });
-                }
-
-                function validarColunas() {
-                    var colunas = []
-                    for (var coluna = 1; coluna <= 3; coluna++) {
-                        colunas[coluna - 1] = $('table tr:nth-child(1) td:nth-child(' + coluna + ')').html();
-                        colunas[coluna - 1] += $('table tr:nth-child(2) td:nth-child(' + coluna + ')').html();
-                        colunas[coluna - 1] += $('table tr:nth-child(3) td:nth-child(' + coluna + ')').html();
-                    }
-                    for (coluna in colunas) {
-                        if (colunas[coluna] === 'XXX' || colunas[coluna] === 'OOO') {
-                            ganhou();
-                        }
-                    }
-                }
-
-                function ganhou() {
-                    $('table tr td').unbind('click');
-                }
-
-                function alternarJogador() {
-                    if (jogador == 'O') {
-                        jogador = 'X';
-                    } else {
-                        jogador = 'O';
-                    }
-                    $('#jogador').html(jogador);
-                }
-            });
-        </script>
+        <script src="js/main.js" charset="utf-8"></script>
     </head>
     <body>
         <div>
-            Jogador da vez:
-            <span id="jogador"></span>
+            <h3 id="jogador"></h3>
         </div>
         <table cellspacing="0" cellpadding="0" id="t1" class="unselectable">
             <tr>
@@ -105,5 +28,6 @@
                 <td></td>
             </tr>
         </table>
+        <div class="wrapper"></div>
     </body>
 </html>
